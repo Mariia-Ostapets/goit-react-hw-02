@@ -1,0 +1,13 @@
+.feedbackGood {
+  color: green;
+}
+.feedbackNeutral {
+  color: yellow;
+}
+.feedbackBad {
+  color: red;
+}
+.feedbackPositivePercentage {
+  color: violet;
+  font-weight: 700;
+}
