@@ -16,18 +16,39 @@ export default function App() {
     localStorage.setItem('feedback', JSON.stringify(feedback));
   }, [feedback]);
 
+  const updateFeedback = feedbackType => {
+    setFeedback(prevFeedback => ({
+      ...prevFeedback,
+      [feedbackType]: prevFeedback[feedbackType] + 1,
+    }));
+  };
+
+  const resetFeedback = () => {
+    setFeedback({
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    });
+  };
+
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+
+  const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
 
   return (
     <div>
       <Description />
       <Options
-        feedback={feedback}
-        setFeedback={setFeedback}
+        updateFeedback={updateFeedback}
         totalFeedback={totalFeedback}
+        resetFeedback={resetFeedback}
       />
       {totalFeedback > 0 ? (
-        <Feedback feedback={feedback} totalFeedback={totalFeedback} />
+        <Feedback
+          feedback={feedback}
+          totalFeedback={totalFeedback}
+          positiveFeedback={positiveFeedback}
+        />
       ) : (
         <Notification message="No feedback yet" />
       )}

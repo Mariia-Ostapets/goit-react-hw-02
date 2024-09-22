@@ -7,7 +7,7 @@
 .feedbackBad {
   color: red;
 }
-.feedbackPositivePercentage {
+.positiveFeedback {
   color: violet;
   font-weight: 700;
 }
